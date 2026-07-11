@@ -1,0 +1,537 @@
+:root {
+    /* لوحة الألوان الملكية: أزرق الليل العميق، الفضة اللؤلؤية، والأبيض العاجي المضيء */
+    --color-silver: #c0c0c0;
+    --color-silver-light: #e0e0e0;
+    --color-bg-dark: #0a1128;       /* أزرق ملكي عميق وداكن جداً للخلفية الأساسية */
+    --color-bg-deep: #000814;       /* درجة أزرق ليلية داكنة للأقسام الفاصلة */
+    --color-bg-surface: #101f42;    /* كحلي ملكي مشرق للبطاقات والصناديق لتسهيل القراءة */
+    --color-text-light: #f4f6f9;    /* أبيض فضي لؤلؤي ساطع للنصوص لقراءة واضحة لكبار السن */
+    --color-text-muted: rgba(244, 246, 249, 0.5);
+    --color-border: rgba(192, 192, 192, 0.25);
+    --shadow-deep: 0 30px 70px rgba(0, 8, 20, 0.5);
+    --shadow-glow: 0 0 30px rgba(224, 224, 224, 0.25);
+    --transition-smooth: all 1.2s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    /* تأثير متموج ناعم يحاكي حركة الحرير الأزرق الداكن في الليل */
+    background: linear-gradient(135deg, #0a1128, #101f42, #000814, #0a1128);
+    background-size: 400% 400%;
+    animation: gradientSilkMovement 20s ease infinite;
+    color: var(--color-text-light);
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.7;
+}
+
+@keyframes gradientSilkMovement {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- زر التحكم بالموسيقى الفضي العائم --- */
+.audio-toggle-widget {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 1000;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-silver);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-deep);
+    color: var(--color-silver-light);
+    font-size: 1.3rem;
+    transition: var(--transition-smooth);
+    animation: buttonPulseGlow 3s infinite alternate;
+}
+.audio-toggle-widget:hover {
+    transform: scale(1.12) rotate(15deg);
+}
+
+@keyframes buttonPulseGlow {
+    0% { box-shadow: var(--shadow-deep); }
+    100% { box-shadow: var(--shadow-glow); }
+}
+
+/* --- ذرات الفضة واللؤلؤ العائمة التفاعلية في الفضاء الأزرق --- */
+#particle-canvas-ambient {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; z-index: 1;
+}
+.ambient-dust-element {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: driftingDust linear infinite;
+}
+@keyframes driftingDust {
+    0% { transform: translateY(-20px) translateX(0px) scale(0.8); opacity: 0; }
+    20% { opacity: 0.7; transform: translateY(20vh) translateX(15px) scale(1.1); }
+    50% { transform: translateY(50vh) translateX(-15px) scale(0.9); opacity: 0.5; }
+    80% { opacity: 0.7; transform: translateY(80vh) translateX(20px) scale(1.2); }
+    100% { transform: translateY(102vh) translateX(0px) scale(0.8); opacity: 0; }
+}
+
+/* --- الافتتاحية السينمائية بستائر الحرير الفضية المنقسمة --- */
+#cinematic-portal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+#cinematic-portal-overlay::before, #cinematic-portal-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0; width: 50vw; height: 100vh;
+    /* ستائر حرير فضية ميتاليك مبهرة */
+    background: linear-gradient(135deg, #a6b1e1, #e0e0e0, #a6b1e1);
+    transition: transform 1.6s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: -1;
+}
+#cinematic-portal-overlay::before { left: 0; transform-origin: left; }
+#cinematic-portal-overlay::after { right: 0; transform-origin: right; }
+
+#cinematic-portal-overlay.curtains-open::before { transform: translateX(-50vw); }
+#cinematic-portal-overlay.curtains-open::after { transform: translateX(50vw); }
+#cinematic-portal-overlay.curtains-open { opacity: 0; visibility: hidden; transition: opacity 1.6s, visibility 1.6s; }
+
+.portal-core-content { 
+    text-align: center; 
+    padding: 3rem;
+    transition: all 1s ease;
+}
+#cinematic-portal-overlay.curtains-open .portal-core-content { transform: scale(0.8); opacity: 0; }
+
+.portal-monogram-rings {
+    font-size: 4rem;
+    color: var(--color-bg-dark);
+    margin-bottom: 2rem;
+    animation: ringSpinPulse 4s infinite alternate ease-in-out;
+}
+@keyframes ringSpinPulse {
+    0% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 2px rgba(255,255,255,0)); }
+    100% { transform: scale(1.08) rotate(5deg); filter: drop-shadow(0 0 20px rgba(255,255,255,0.6)); }
+}
+.portal-title { font-family: 'Amiri', serif; font-size: 3.5rem; font-weight: 300; margin-bottom: 1rem; color: var(--color-bg-dark); }
+.portal-subtitle { font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(10, 17, 40, 0.7); margin-bottom: 3rem; }
+
+.btn-portal-entry {
+    background: var(--color-bg-dark);
+    border: 1px solid var(--color-bg-dark);
+    color: #ffffff;
+    padding: 1.2rem 3.5rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: var(--shadow-deep);
+    transition: var(--transition-smooth);
+    position: relative;
+    z-index: 10;
+}
+.btn-portal-entry:hover {
+    background: transparent;
+    color: var(--color-bg-dark);
+    border-color: var(--color-bg-dark);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-3px);
+}
+
+/* --- الهيدر الرئيسي الواجهة الملكية --- */
+.hero-viewport-header {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    background: radial-gradient(circle at center, rgba(16,31,66,0.3) 0%, var(--color-bg-dark) 100%);
+}
+.hero-tagline { letter-spacing: 0.4em; font-size: 0.85rem; color: var(--color-silver-light); margin-bottom: 2rem; font-weight: 600; }
+.editorial-headline-hero { 
+    font-family: 'Playfair Display', 'Amiri', serif; 
+    font-size: 5.5rem; 
+    font-weight: 300; 
+    color: #ffffff; 
+    letter-spacing: -1px; 
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 20px rgba(255,255,255,0.15);
+    animation: blurTextReveal 2s cubic-bezier(0.25, 1, 0.3, 1) forwards;
+}
+
+@keyframes blurTextReveal {
+    0% { filter: blur(12px); opacity: 0; transform: translateY(30px); }
+    100% { filter: blur(0); opacity: 1; transform: translateY(0); }
+}
+
+.minimal-divider-line { 
+    width: 60px; 
+    height: 1px; 
+    background: var(--color-silver); 
+    margin: 2.5rem auto; 
+}
+.hero-poetic-quote { font-family: 'Amiri', serif; font-size: 1.6rem; color: #ffffff; max-width: 700px; margin: 0 auto; line-height: 2.1; font-style: italic; }
+
+/* --- الظرف التفاعلي المطور بتصميم فضائي أزرق وفضي --- */
+.section-envelope-reveal {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem;
+    background: var(--color-bg-deep);
+    perspective: 1500px;
+    z-index: 2;
+    position: relative;
+}
+.interactive-card-envelope {
+    position: relative;
+    width: 450px;
+    height: 300px;
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-deep);
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-style: preserve-3d;
+}
+.envelope-flap-fold {
+    position: absolute;
+    top: 0; left: 0; width: 0; height: 0;
+    border-left: 225px solid transparent;
+    border-right: 225px solid transparent;
+    border-top: 160px solid #1c2d5a; /* لون متناسق مع الكحلي الملكي */
+    transform-origin: top;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 3;
+}
+.interactive-card-envelope.is-open .envelope-flap-fold { transform: rotateX(180deg); z-index: 1; }
+.internal-letter-sheet {
+    position: absolute;
+    top: 10px; left: 10px; width: 430px; height: 280px;
+    background: #ffffff; /* الورقة الداخلية تظل بيضاء ناصعة لأعلى درجات وضوح القراءة لكبار السن */
+    z-index: 2;
+    transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid #e2e8f0;
+}
+.interactive-card-envelope.is-open .internal-letter-sheet { transform: translateY(-130px) translateZ(10px); z-index: 4; }
+.letter-badge { font-size: 0.75rem; letter-spacing: 0.2em; color: #101f42; font-weight: bold; }
+.letter-host { font-family: 'Amiri', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1rem; color: #0a1128; }
+.letter-body-text { font-size: 0.95rem; color: #334155; line-height: 1.8; margin-bottom: 1rem; }
+.letter-footer-meta { border-top: 1px solid rgba(16,31,66,0.1); padding-top: 1rem; }
+.letter-date { font-size: 1.15rem; font-weight: 600; color: #0a1128; font-family: 'Playfair Display', serif; }
+.letter-time { font-size: 0.85rem; color: #64748b; margin-top: 0.25rem; }
+/* --- حركات الظرف المطور ثلاثي الأبعاد المتقدم --- */
+.interactive-card-envelope {
+    transform: rotateX(10deg) rotateY(-5deg);
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.4s ease;
+}
+
+.interactive-card-envelope:hover, .interactive-card-envelope.is-open {
+    transform: rotateX(0deg) rotateY(0deg) scale(1.02);
+    box-shadow: 0 40px 90px rgba(0, 8, 20, 0.6);
+}
+
+/* --- العداد التنازلي الفضي المضيء --- */
+.section-countdown-timer { 
+    padding: 10rem 2rem; 
+    background: transparent; 
+    text-align: center; 
+    z-index: 2; 
+    position: relative; 
+}
+
+.countdown-badge { 
+    font-size: 0.8rem; 
+    letter-spacing: 0.3em; 
+    color: var(--color-silver-light); 
+    margin-bottom: 1.5rem; 
+    font-weight: 600; 
+}
+
+.countdown-grid-metrics { 
+    display: flex; 
+    justify-content: center; 
+    gap: 2.5rem; 
+    max-width: 850px; 
+    margin: 0 auto; 
+    flex-wrap: wrap; 
+}
+
+.countdown-metric-card { 
+    background: var(--color-bg-surface); 
+    border: 1px solid var(--color-border); 
+    padding: 3rem 2rem; 
+    min-width: 160px; 
+    flex: 1; 
+    box-shadow: var(--shadow-deep); 
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-metric-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(to right, transparent, var(--color-silver-light), transparent);
+    transform: scaleX(0);
+    transition: transform 0.8s ease;
+}
+
+.countdown-metric-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-glow);
+}
+
+.countdown-metric-card:hover::after {
+    transform: scaleX(1);
+}
+
+.countdown-metric-card span { 
+    font-family: 'Playfair Display', 'Amiri', serif; 
+    font-size: 4rem; 
+    font-weight: 300; 
+    color: #ffffff; /* أبيض مشع لأعلى درجة تباين مريحة للعين */
+    line-height: 1; 
+    display: block; 
+    margin-bottom: 0.75rem; 
+    letter-spacing: -1px; 
+    text-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.countdown-metric-card label { 
+    font-size: 0.8rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.2em; 
+    color: var(--color-text-muted); 
+    font-weight: 600; 
+}
+
+/* --- بوابة الحضور الرقمية الفاخرة RSVP عالية التباين لكبار السن --- */
+.section-rsvp { 
+    padding: 10rem 2rem; 
+    background: transparent; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 2; 
+    position: relative; 
+}
+
+.rsvp-container-box { 
+    width: 100%; 
+    max-width: 650px; 
+    background: var(--color-bg-surface); 
+    border: 1px solid var(--color-border); 
+    padding: 5.5rem 4.5rem; 
+    position: relative; 
+    box-shadow: var(--shadow-deep); 
+    transition: var(--transition-smooth);
+}
+
+.rsvp-container-box::before { 
+    content: ''; 
+    position: absolute; 
+    top: 15px; left: 15px; right: 15px; bottom: 15px; 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    pointer-events: none; 
+}
+
+.rsvp-badge { 
+    font-size: 0.8rem; 
+    letter-spacing: 0.3em; 
+    color: var(--color-silver-light); 
+    margin-bottom: 1.5rem; 
+    font-weight: 600; 
+    text-align: center; 
+}
+
+.rsvp-instructions { 
+    color: #f4f6f9; /* نص ناصع ومقروء جداً لكبار السن */
+    font-size: 1.15rem; 
+    text-align: center; 
+    margin-bottom: 3.5rem; 
+    line-height: 1.9; 
+    font-weight: 400;
+}
+
+.form-group-field { 
+    position: relative; 
+    margin-bottom: 3.5rem; 
+}
+
+.form-field-label { 
+    font-size: 1rem; 
+    color: #ffffff; 
+    display: block; 
+    margin-bottom: 1.2rem; 
+    text-align: right; 
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.form-input-control, .form-select-control { 
+    width: 100%; 
+    background: transparent; 
+    border: none; 
+    border-bottom: 2px solid var(--color-border); 
+    padding: 1.2rem 0; 
+    font-size: 1.35rem; /* حقول كتابة ضخمة وواضحة جداً لتجنب أخطاء الكتابة */
+    color: #ffffff; 
+    outline: none; 
+    transition: var(--transition-smooth); 
+    text-align: center; 
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.form-input-control::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.form-input-control:focus, .form-select-control:focus { 
+    border-color: #ffffff; 
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 4px 20px rgba(255,255,255,0.02);
+}
+
+/* لوحة التذكير الراقي الفضية المضيئة */
+.polite-notice-banner { 
+    font-size: 1.1rem; 
+    color: #ffffff; 
+    line-height: 1.9; 
+    background: rgba(255, 255, 255, 0.03); 
+    border-right: 4px solid var(--color-silver); 
+    padding: 1.8rem; 
+    margin-bottom: 3.5rem; 
+    text-align: right; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* الأزرار الفضية الساطعة المتوهجة حركياً بقوة */
+.btn-premium-action { 
+    width: 100%; 
+    background: #ffffff; /* زر أبيض مشع يسهل رؤيته فورا وضغطه بنجاح */
+    border: 1px solid #ffffff; 
+    color: var(--color-bg-dark); 
+    padding: 1.5rem 2.5rem; 
+    font-size: 1.25rem; 
+    letter-spacing: 0.05em; 
+    cursor: pointer; 
+    transition: var(--transition-smooth); 
+    font-weight: 700; 
+    box-shadow: 0 15px 40px rgba(255,255,255,0.1);
+}
+
+.btn-premium-action:hover { 
+    background: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.style-icon { 
+    margin-left: 10px; 
+}
+
+#rsvp-portal-status-feedback { 
+    text-align: center; 
+    margin-top: 2rem; 
+    font-weight: 600; 
+    font-size: 1.15rem; 
+    letter-spacing: 0.02em; 
+    padding: 1.2rem; 
+    border-radius: 4px; 
+    background: rgba(255, 255, 255, 0.04); 
+    border: 1px solid var(--color-border); 
+}
+
+/* --- خريطة موقع فندق ماريوت عمّان بالتنسيق الليلي المدمج --- */
+.section-location-map { 
+    padding: 10rem 2rem; 
+    background: transparent; 
+    text-align: center; 
+    z-index: 2; 
+    position: relative; 
+}
+
+.map-badge { 
+    font-size: 0.8rem; 
+    letter-spacing: 0.3em; 
+    color: var(--color-silver-light); 
+    margin-bottom: 1.5rem; 
+    font-weight: 600; 
+}
+
+.map-viewport-frame { 
+    max-width: 950px; 
+    margin: 4rem auto 0 auto; 
+    border: 1px solid var(--color-border); 
+    padding: 1.2rem; 
+    background: var(--color-bg-surface); 
+    box-shadow: var(--shadow-deep); 
+    transition: var(--transition-smooth);
+}
+
+.map-viewport-frame:hover {
+    transform: scale(1.01);
+    box-shadow: var(--shadow-glow);
+}
+
+.map-viewport-frame iframe { 
+    width: 100%; 
+    height: 500px; 
+    border: 0; 
+    filter: invert(0.92) rotate(180deg) hue-rotate(180deg) grayscale(0.2) contrast(1.1); /* مصفوفة فلاتر متطورة لتحويل الخريطة للنمط الليلي الأزرق الفاخر */
+}
+
+/* --- الفوتر الإعلاني التحريري الفضي --- */
+.footer-editorial { 
+    padding: 8rem 2rem; 
+    background: var(--color-bg-deep); 
+    text-align: center; 
+    border-top: 1px solid var(--color-border); 
+    z-index: 2; 
+    position: relative; 
+}
+
+/* --- تهيئة التجاوب التام المطور لشاشات الهواتف المتنوعة (آيفون وأندرويد) --- */
+@media (max-width: 768px) {
+    .editorial-headline-hero { font-size: 3.6rem; }
+    .hero-poetic-quote { font-size: 1.3rem; line-height: 2; }
+    .interactive-card-envelope { width: 100%; height: 260px; }
+    .envelope-flap-fold { border-left-width: 46vw; border-right-width: 46vw; border-top-width: 110px; }
+    .internal-letter-sheet { width: calc(100% - 20px); height: 240px; padding: 2.2rem 1.2rem; }
+    .interactive-card-envelope.is-open .internal-letter-sheet { transform: translateY(-90px) translateZ(10px); }
+    .countdown-metric-card span { font-size: 2.8rem; }
+    .countdown-metric-card { min-width: calc(50% - 1rem); padding: 2rem 1rem; }
+    .rsvp-container-box { padding: 4rem 2rem; }
+    .form-input-control, .form-select-control { font-size: 1.15rem; }
+    .map-viewport-frame iframe { height: 350px; }
+}
