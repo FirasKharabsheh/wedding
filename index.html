@@ -3,62 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>فراس & نيروز | Luxury Wedding Invitation</title>
+    <title>فراس & نيروز | دعوة زفاف ملكية</title>
     
-    <!-- Premium Google Fonts المحدثة للفخامة والوضوح -->
+    <!-- Premium Font Framework (Cairo and Amiri) -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- BACKGROUND AUDIO SYSTEM -->
+    <!-- BACKGROUND AUDIO -->
     <audio id="ambient-audio-player" loop>
         <source src="https://soundhelix.com" type="audio/mpeg">
     </audio>
 
-    <!-- FLOATING AUDIO CONTROLLER -->
+    <!-- AUDIO CONTROLLER -->
     <div class="audio-toggle-widget" onclick="toggleAmbientPlayback()">
         <i id="audio-widget-icon" class="fa-solid fa-volume-xmark"></i>
     </div>
 
-    <!-- AMBIENT PARTICLES CANVAS -->
-    <div id="particle-canvas-ambient"></div>
+      <!-- ULTRALUXURY CINEMATIC FROST & METALLIC PEARL RAIN SYSTEM CONTAINER -->
+    <canvas id="luxurious-pearl-rain-canvas"></canvas>
 
-    <!-- HERO DISPLAY HEADER -->
+
+    <!-- HERO SECTION -->
     <header class="hero-viewport-header">
         <div class="hero-branding-wrapper">
-            <p class="hero-tagline">THE WEDDING INVITATION</p>
+            <p class="hero-tagline">بطاقة دعوة رسمية</p>
             <h1 class="editorial-headline-hero">فراس & نيروز</h1>
             <div class="minimal-divider-line"></div>
             <p class="hero-poetic-quote">
-                "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"
+                "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
             </p>
         </div>
     </header>
 
-    <!-- SCROLL-TRIGGERED 3D ENVELOPE SECTION -->
+    <!-- 3D ENVELOPE SECTION -->
     <section class="section-envelope-reveal">
         <div class="interactive-card-envelope" id="wedding-interactive-envelope">
             <div class="envelope-flap-fold"></div>
             <div class="internal-letter-sheet">
-                <p class="letter-badge">ROYAL INVITATION</p>
+                <p class="letter-badge">دعوة ملكية</p>
                 <h2 class="letter-host">يتشرف آل الخرابشة وآل أبو قاعود</h2>
                 <p class="letter-body-text">
-                    بدعوة سيادتكم لتشريفنا بحضور حفل زفاف نجلهم الميمون وتوثيق فرحتنا بوجودكم الكريم. تنطلق الفاردة بمشيئة الله في تمام الساعة 5:30 مساءً.
+                    بدعوة سيادتكم لتشريفنا بحضور حفل زفاف نجلهم الميمون وتوثيق فرحتنا بوجودكم الكريم. تنطلق الفاردة بمشيئة الله في تمام الساعة الخامسة والنصف مساءً.
                 </p>
                 <div class="letter-footer-meta">
-                    <p class="letter-date">05 . 08 . 2026</p>
-                    <p class="letter-time">تجمع الفاردة: 5:30 مساءً | بدء الحفل: 7:30 مساءً</p>
+                    <p class="letter-date">٠٥ . ٠٨ . ٢٠٢٦</p>
+                    <p class="letter-time">تجمع الفاردة: ٥:٣٠ مساءً | بدء الحفل: ٧:٣٠ مساءً</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- الفكرة 3: شروط الطاولات المنظمة (الاعتذار عن الأطفال بأسلوب راقٍ) -->
+    <!-- ETIQUETTE / NO CHILDREN BANNER -->
     <section class="section-terms-etiquette">
         <div class="terms-card-wrapper">
             <div class="terms-icon"><i class="fa-solid fa-leaf"></i></div>
@@ -69,39 +70,38 @@
         </div>
     </section>
 
-    <!-- LIVE REAL-TIME COUNTDOWN TIMER SYSTEM -->
+    <!-- COUNTDOWN TIMER -->
     <section class="section-countdown-timer">
-        <p class="countdown-badge">TIME REMAINING</p>
+        <!-- <p class="countdown-badge">الموعد المرتقب</p> -->
         <h2 class="section-editorial-title text-light">الوقت المتبقي لجمع شملنا</h2>
         <div class="countdown-grid-metrics">
-            <div class="countdown-metric-card"><span id="metric-days">00</span><label>أيام</label></div>
+            <div class="countdown-metric-card"><span id="metric-days">٠٠</span><label>أيام</label></div>
             <div class="countdown-metric-card"><span id="metric-hours">00</span><label>ساعات</label></div>
             <div class="countdown-metric-card"><span id="metric-minutes">00</span><label>دقائق</label></div>
             <div class="countdown-metric-card"><span id="metric-seconds">00</span><label>ثوانٍ</label></div>
         </div>
     </section>
 
-    <!-- PASSWORD-PROTECTED RSVP REGISTRATION PORTAL -->
+    <!-- RSVP REGISTRATION PORTAL -->
     <section class="section-rsvp">
         <div class="rsvp-container-box">
-            <p class="rsvp-badge">REGISTRATION</p>
-            <h2 class="section-editorial-title text-center text-spaced">تأكيد الحضور الرقمي</h2>
+            <p class="rsvp-badge">تأكيد الحجز</p>
+            <!-- <h2 class="section-editorial-title text-center text-spaced">تأكيد الحضور الرقمي</h2> -->
             
-            <!-- STAGE 1: IDENTITY VERIFICATION -->
+            <!-- STAGE 1: LOG-IN -->
             <div id="rsvp-auth-verification-stage">
                 <p class="rsvp-instructions">
                     يرجى إدخال الرمز الخاص المرفق ببطاقة دعوتكم لتأكيد مقاعدكم مسبقة الحجز:
                 </p>
                 <div class="form-group-field">
-                    <input type="text" id="guest-passcode-input" class="form-input-control" placeholder="أدخل رمز الدعوة السري (مثال: VIP44)">
+                    <input type="text" id="guest-passcode-input" class="form-input-control" placeholder="أدخل رمز الدعوة الخاص بك">
                 </div>
-                <button type="button" class="btn-premium-action" onclick="executePasscodeVerification()">التحقق من الدعوة</button>
+                <button type="button" class="btn-premium-action" onclick="executePasscodeVerification()">التحقق من الدعوة الرسمية</button>
             </div>
 
-            <!-- STAGE 2: SEAT SELECTION & TRANSMISSION -->
+            <!-- STAGE 2: DATA SUBMISSION -->
             <form id="rsvp-dynamic-submission-form" onsubmit="transmitRSVPToSpreadsheet(event)" style="display: none;">
                 <h3 id="authenticated-guest-welcome"></h3>
-                
                 <p id="polite-seats-reminder" class="polite-notice-banner"></p>
 
                 <div class="form-group-field">
@@ -123,55 +123,37 @@
             </form>
             <div id="rsvp-portal-status-feedback"></div>
 
-            <!-- الفكرة 2: بطاقة الدخول الرقمية التلقائية النابضة بكود مخصص لكبار السن -->
+            <!-- IN-APP DIGITAL TICKET PASS -->
             <div id="digital-entry-pass-card" style="display: none;">
                 <div class="pass-card-header">بطاقة دخول رسمية</div>
                 <div class="pass-card-body">
                     <h4 id="pass-guest-name"></h4>
                     <div class="pass-meta-row">
                         <div><span>الموقع:</span> فندق ماريوت عمّان</div>
-                        <div><span>المقاعد الموثقة:</span> <strong id="pass-guest-seats">0</strong></div>
+                        <div><span>المقاعد الموثقة:</span> <strong id="pass-guest-seats">٠</strong></div>
                     </div>
                     <div class="pass-footer-notice">يرجى حفظ لقطة شاشة (Screenshot) للبطاقة وإبرازها عند البوابة</div>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- LOCATION MAP SECTION -->
     <section class="section-location-map">
-        <p class="map-badge">THE VENUE LOCATION</p>
+        <p class="map-badge">موقع القاعة الجغرافي</p>
         <h2 class="section-editorial-title text-light">موقع الفرح الحصري</h2>
         <p class="map-description">فندق ماريوت عمّان — قاعة الاحتفالات الملكية الكبرى</p>
         
-        <!-- الفكرة 4: أزرار الملاحة والتوجيه الفوري لـ Google Maps و Waze المريحة لكبار السن والسائقين -->
-        <div class="navigation-fast-links">
-            <a href="https://google.com" target="_blank" class="nav-btn-link maps-google">
-                <i class="fa-solid fa-map-location-dot"></i> فتح عبر Google Maps
-            </a>
-            <a href="https://waze.com" target="_blank" class="nav-btn-link maps-waze">
-                <i class="fa-brands fa-waze"></i> فتح عبر تطبيق Waze
-            </a>
-        </div>
-
+        
         <div class="map-viewport-frame">
-            <iframe 
-                src="https://google.com" 
-                width="100%" 
-                height="450" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="strict-origin-when-cross-origin">
-            </iframe>
+=<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.552875807576!2d35.905795999999995!3d31.9730247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ca00dac398a03%3A0x7457e2ecc4a18517!2sAmman%20Marriott%20Hotel!5e0!3m2!1sen!2sjo!4v1783792204919!5m2!1sen!2sjo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
     </section>
 
-    <!-- EDITORIAL FOOTER -->
+    <!-- FOOTER -->
     <footer class="footer-editorial">
         <p class="footer-brand">فراس & نيروز</p>
-        <p class="footer-copyright">Barakat & Celebration © 2026</p>
+        <p class="footer-copyright">جميع الحقوق محفوظة © ٢٠٢٦</p>
     </footer>
 
     <script src="app.js"></script>
