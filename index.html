@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>فراس & نيروز | Luxury Wedding Invitation</title>
     
-    <!-- Premium Google Fonts & Icon Libraries -->
+    <!-- Premium Google Fonts المحدثة للفخامة والوضوح -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Amiri:ital@1&family=Cairo:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
     
-    <!-- Modular Stylesheet Link -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,9 +25,8 @@
         <i id="audio-widget-icon" class="fa-solid fa-volume-xmark"></i>
     </div>
 
-    <!-- AMBIENT GOLD LEAF PARTICLES CANVAS -->
+    <!-- AMBIENT PARTICLES CANVAS -->
     <div id="particle-canvas-ambient"></div>
-
 
     <!-- HERO DISPLAY HEADER -->
     <header class="hero-viewport-header">
@@ -60,7 +58,18 @@
         </div>
     </section>
 
-     <!-- LIVE REAL-TIME COUNTDOWN TIMER SYSTEM -->
+    <!-- الفكرة 3: شروط الطاولات المنظمة (الاعتذار عن الأطفال بأسلوب راقٍ) -->
+    <section class="section-terms-etiquette">
+        <div class="terms-card-wrapper">
+            <div class="terms-icon"><i class="fa-solid fa-leaf"></i></div>
+            <h2 class="terms-title">لطفاً ومحبة</h2>
+            <p class="terms-text">
+                نود أن نلفت عناية سيادتكم بأن طاولات الحفل قد صُممت لتمنحكم تجربة ليلية هادئة وفاخرة تليق بتشريفكم الكريم، لذا يرجى العلم بأن الحفل مخصص للحضور البالغين فقط. دمتم ودامت أوقاتكم مفعمة بالمسرات.
+            </p>
+        </div>
+    </section>
+
+    <!-- LIVE REAL-TIME COUNTDOWN TIMER SYSTEM -->
     <section class="section-countdown-timer">
         <p class="countdown-badge">TIME REMAINING</p>
         <h2 class="section-editorial-title text-light">الوقت المتبقي لجمع شملنا</h2>
@@ -72,7 +81,7 @@
         </div>
     </section>
 
-        <!-- PASSWORD-PROTECTED RSVP REGISTRATION PORTAL -->
+    <!-- PASSWORD-PROTECTED RSVP REGISTRATION PORTAL -->
     <section class="section-rsvp">
         <div class="rsvp-container-box">
             <p class="rsvp-badge">REGISTRATION</p>
@@ -93,7 +102,6 @@
             <form id="rsvp-dynamic-submission-form" onsubmit="transmitRSVPToSpreadsheet(event)" style="display: none;">
                 <h3 id="authenticated-guest-welcome"></h3>
                 
-                <!-- Polite and Elegant Seating Disclaimer Notice -->
                 <p id="polite-seats-reminder" class="polite-notice-banner"></p>
 
                 <div class="form-group-field">
@@ -114,21 +122,45 @@
                 </button>
             </form>
             <div id="rsvp-portal-status-feedback"></div>
+
+            <!-- الفكرة 2: بطاقة الدخول الرقمية التلقائية النابضة بكود مخصص لكبار السن -->
+            <div id="digital-entry-pass-card" style="display: none;">
+                <div class="pass-card-header">بطاقة دخول رسمية</div>
+                <div class="pass-card-body">
+                    <h4 id="pass-guest-name"></h4>
+                    <div class="pass-meta-row">
+                        <div><span>الموقع:</span> فندق ماريوت عمّان</div>
+                        <div><span>المقاعد الموثقة:</span> <strong id="pass-guest-seats">0</strong></div>
+                    </div>
+                    <div class="pass-footer-notice">يرجى حفظ لقطة شاشة (Screenshot) للبطاقة وإبرازها عند البوابة</div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-
-    <!-- LOCATION MAP SECTION (OFFICIAL SECURE IFRAME NODE) -->
+    <!-- LOCATION MAP SECTION -->
     <section class="section-location-map">
         <p class="map-badge">THE VENUE LOCATION</p>
         <h2 class="section-editorial-title text-light">موقع الفرح الحصري</h2>
-        <p class="map-description">فندق ماريوت عمّان </p>
+        <p class="map-description">فندق ماريوت عمّان — قاعة الاحتفالات الملكية الكبرى</p>
+        
+        <!-- الفكرة 4: أزرار الملاحة والتوجيه الفوري لـ Google Maps و Waze المريحة لكبار السن والسائقين -->
+        <div class="navigation-fast-links">
+            <a href="https://google.com" target="_blank" class="nav-btn-link maps-google">
+                <i class="fa-solid fa-map-location-dot"></i> فتح عبر Google Maps
+            </a>
+            <a href="https://waze.com" target="_blank" class="nav-btn-link maps-waze">
+                <i class="fa-brands fa-waze"></i> فتح عبر تطبيق Waze
+            </a>
+        </div>
+
         <div class="map-viewport-frame">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.552875807576!2d35.905795999999995!3d31.9730247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ca00dac398a03%3A0x7457e2ecc4a18517!2sAmman%20Marriott%20Hotel!5e0!3m2!1sen!2sjo!4v1783792204919!5m2!1sen!2sjo" 
+                src="https://google.com" 
                 width="100%" 
                 height="450" 
-                style="border:0; filter: sepia(0.15) contrast(1.02);" 
+                style="border:0;" 
                 allowfullscreen="" 
                 loading="lazy" 
                 referrerpolicy="strict-origin-when-cross-origin">
@@ -137,13 +169,11 @@
     </section>
 
     <!-- EDITORIAL FOOTER -->
-     <footer class="footer-editorial">
+    <footer class="footer-editorial">
         <p class="footer-brand">فراس & نيروز</p>
         <p class="footer-copyright">Barakat & Celebration © 2026</p>
     </footer>
 
-
-    <!-- Runtime Engine Script Module -->
     <script src="app.js"></script>
 </body>
 </html>
