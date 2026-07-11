@@ -5,18 +5,20 @@ window.globalRegistryDatabase = {}; // Memory cache initialized empty
 
 // 👑 Paste your official unique deployed Google Web App macro execution link target directly here
 const googleDatabaseEndpointUrl = "https://script.google.com/macros/s/AKfycbw1P_zT7xP5Rie-iHnJtcECf67jIzx4iiWugo1MmF-HUE-lrBPY1TTrQBwJolYTdygmuw/exec";
-// جلب رموز وأسماء المدعوين ديناميكياً من جدول جوجل فور تحميل الصفحة
+
+
+// جلب رموز وأسماء المدعوين ديناميكياً وحياً من جدول جوجل فور تحميل الصفحة
 window.addEventListener('DOMContentLoaded', () => {
-    console.log("🌐 جاري الاتصال الآمن بجدول بيانات جوجل ومزامنة قائمة المدعوين...");
+    console.log("🌐 جاري الاتصال الآمن بجدول بيانات جوجل ومزامنة قائمة المدعوين حياً...");
     
     fetch(googleDatabaseEndpointUrl)
     .then(response => response.json())
     .then(data => {
         window.globalRegistryDatabase = data;
-        console.log("✅ تم تحميل قاعدة بيانات الضيوف بنجاح ومزامنتها حياً:", window.globalRegistryDatabase);
+        console.log("✅ تم تحميل قاعدة بيانات الضيوف بنجاح ومزامنتها تلقائياً:", window.globalRegistryDatabase);
     })
     .catch(error => {
-        console.error("❌ خطأ حرج أثناء جلب البيانات الديناميكية من السيرفر:", error);
+        console.error("❌ خطأ أثناء جلب البيانات الديناميكية من سيرفر جوجل:", error);
     });
 });
 
@@ -26,9 +28,8 @@ window.addEventListener('DOMContentLoaded', () => {
 const audioPlayerInstance = document.getElementById('ambient-audio-player');
 const audioWidgetIconElement = document.getElementById('audio-widget-icon');
 
-// منظومة الانتقال التلقائي الفوري لقسم الدعوة عند فتح الصفحة (تمرير انسيابي بدون نقر)
+// تمرير الشاشة تلقائياً وانسيابياً لأسفل نحو كرت الدعوة لتوفير جهد النقر لكبار السن
 window.addEventListener('load', () => {
-    // محاولة تشغيل الموسيقى الخلفية تلقائياً بناءً على حماية المتصفح
     if (audioPlayerInstance) {
         audioPlayerInstance.play().catch(() => {
             console.log("المتصفح يطلب تفاعلاً أولياً لتشغيل الصوت، سيتم تفعيله عند أول حركة للضيف.");
@@ -36,7 +37,6 @@ window.addEventListener('load', () => {
         if (audioWidgetIconElement) audioWidgetIconElement.className = "fa-solid fa-volume-high";
     }
 
-    // انتشال المتصفح وتمريره آلياً ونزولاً لقسم كرت الظرف لتأمل الفخامة
     setTimeout(() => {
         const envelopeSection = document.querySelector('.section-envelope-reveal');
         if (envelopeSection) {
@@ -45,7 +45,7 @@ window.addEventListener('load', () => {
                 block: 'center'     
             });
         }
-    }, 1500);
+    }, 1500); // تأخير ثانية ونصف ليعيش الضيف هيبة الواجهة العلوية ثم يتحرك الموقع لأسفل
 });
 
 window.toggleAmbientPlayback = function() {
@@ -60,22 +60,73 @@ window.toggleAmbientPlayback = function() {
 };
 
 // ==========================================================================
-// 3. PROCEDURAL AMBIENT SILVER AND LUSTRE PARTICLES CANVAS
+// 3. CINEMATIC PEARL RAIN & FROST CANVAS GENERATION ENGINE (تأثير الشتاء الكامل)
 // ==========================================================================
-const structuralParticleContainer = document.getElementById('particle-canvas-ambient');
-if (structuralParticleContainer) {
-    for (let i = 0; i < 30; i++) {
-        const node = document.createElement('div');
-        node.className = 'ambient-dust-element';
-        const geometrySize = Math.random() * 4 + 2;
-        node.style.width = `${geometrySize}px`;
-        node.style.height = `${geometrySize}px`;
-        node.style.background = Math.random() > 0.45 ? '#e0e0e0' : 'rgba(255,255,255,0.5)';
-        node.style.left = `${Math.random() * 100}vw`;
-        node.style.animationDuration = `${Math.random() * 8 + 7}s`;
-        node.style.animationDelay = `${Math.random() * 5}s`;
-        structuralParticleContainer.appendChild(node);
+const rainCanvas = document.getElementById('luxurious-pearl-rain-canvas');
+if (rainCanvas) {
+    const ctx = rainCanvas.getContext('2d');
+    let width = (rainCanvas.width = window.innerWidth);
+    let height = (rainCanvas.height = window.innerHeight);
+
+    // تتبع ديناميكي لإعادة ضبط حجم الشاشة عند تدوير الهاتف
+    window.addEventListener('resize', () => {
+        width = (rainCanvas.width = window.innerWidth);
+        height = (rainCanvas.height = window.innerHeight);
+    });
+
+    const particlesArray = [];
+    const maxParticles = 75; // كثافة تساقط ملوكية ومريحة للنظر ولا تبطئ الموبايل
+
+    class RainDrop {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * -height - 20;
+            this.length = Math.random() * 25 + 15; // طول قطرة الشتاء الانسيابية
+            this.speed = Math.random() * 4 + 3;    // سرعة الهبوط الناعمة
+            this.opacity = Math.random() * 0.3 + 0.15; // قطرات ثلجية شفافة وخفيفة جداً فوق النصوص
+            this.radius = Math.random() * 1.5 + 0.5;
+        }
+        draw() {
+            // رسم خيوط الشتاء المنسابة
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(118, 141, 164, ${this.opacity})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x, this.y + this.length);
+            ctx.stroke();
+
+            // رسم ذرة اللؤلؤ الثلجية المتوهجة بأسفل كل قطرة
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity + 0.15})`;
+            ctx.arc(this.x, this.y + this.length, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        update() {
+            this.y += this.speed;
+            if (this.y > height) {
+                this.reset();
+            }
+        }
     }
+
+    // بناء مصفوفة الجسيمات الشتوية
+    for (let i = 0; i < maxParticles; i++) {
+        particlesArray.push(new RainDrop());
+    }
+
+    // حلقة التحريك المستمرة والآمنة لبطارية الهاتف
+    function animateRain() {
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < maxParticles; i++) {
+            particlesArray[i].draw();
+            particlesArray[i].update();
+        }
+        requestAnimationFrame(animateRain);
+    }
+    animateRain();
 }
 
 // ==========================================================================
@@ -101,7 +152,7 @@ window.executePasscodeVerification = function() {
         
         if (noticeBannerTarget) {
             noticeBannerTarget.innerHTML = `
-                <i class="fa-solid fa-circle-info" style="color: var(--color-silver-light); margin-left: 8px;"></i>
+                <i class="fa-solid fa-circle-info" style="color: var(--color-gold); margin-left: 8px;"></i>
                 لطفاً ومحبة، نود إحاطتكم علماً بأنه قد تم تخصيص وتثبيت 
                 <strong>(الحد الأقصى: ${structuralGuestProfile.maxSeats} ${structuralGuestProfile.maxSeats > 2 ? 'مقاعد' : 'مقعدين'})</strong> 
                 لكم في مخطط الطاولات الملكية لضمان راحتكم التامة وتنسيق حضوركم الفاخر بما يليق بكم.
@@ -127,6 +178,7 @@ window.toggleSeatSelectionVisibility = function() {
         containerWrapperElement.style.display = (attendanceStatusElement.value === 'yes') ? 'block' : 'none';
     }
 };
+
 // ==========================================================================
 // 5. ASYNCHRONOUS IN-APP DATABASE REDIRECTION INTERACTION ENGINE
 // ==========================================================================
@@ -146,7 +198,7 @@ window.transmitRSVPToSpreadsheet = function(event) {
 
     actionSubmitButtonNode.disabled = true;
     actionSubmitButtonNode.innerText = "... جاري تسجيل حضوركم الملكي الآن";
-    portalFeedbackDisplayElement.innerHTML = `<span style="color: #ffffff;">يرجى الانتظار لحين إتمام الاتصال الآمن بالسيرفر...</span>`;
+    portalFeedbackDisplayElement.innerHTML = `<span style="color: var(--color-gold-light);">يرجى الانتظار لحين إتمام الاتصال الآمن بالسيرفر...</span>`;
 
     const rsvpSubmissionPayload = {
         passcode: passcodeRefKey,
@@ -157,7 +209,7 @@ window.transmitRSVPToSpreadsheet = function(event) {
 
     fetch(googleDatabaseEndpointUrl, {
         method: "POST",
-        mode: "no-cors", 
+        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(rsvpSubmissionPayload)
     })
@@ -169,10 +221,10 @@ window.transmitRSVPToSpreadsheet = function(event) {
         
         if (selectedStatusValue === 'yes') {
             portalFeedbackDisplayElement.innerHTML = `
-                <div style="background: rgba(255,255,255,0.04); padding: 2rem; border: 1px solid var(--color-border); text-align: center; animation: fadeIn 0.5s ease; margin-bottom: 2rem;">
-                    <i class="fa-solid fa-circle-check" style="color: #ffffff; font-size: 2.5rem; margin-bottom: 1rem; display: block;"></i>
-                    <h3 style="font-family: 'Amiri', serif; margin-bottom: 0.5rem; color: #ffffff;">تم تأكيد حجزكم بنجاح</h3>
-                    <p style="font-size: 1.05rem; color: #ffffff;">شرفتمونا يا عائلتنا الكريمة. تم تثبيت الحجز بنجاح في فندق ماريوت عمّان وننتظركم بكل ابتهاج.</p>
+                <div style="background: rgba(118,141,164,0.04); padding: 2rem; border: 1px solid var(--color-border); text-align: center; animation: fadeIn 0.5s ease; margin-bottom: 2rem;">
+                    <i class="fa-solid fa-circle-check" style="color: var(--color-gold-light); font-size: 2.5rem; margin-bottom: 1rem; display: block;"></i>
+                    <h3 style="font-family: 'Amiri', serif; margin-bottom: 0.5rem;">تم تأكيد حجزكم بنجاح</h3>
+                    <p style="font-size: 1.05rem; color: var(--color-text-light);">شرفتمونا يا عائلتنا الكريمة. تم تثبيت الحجز بنجاح في فندق ماريوت عمّان وننتظركم بكل ابتهاج.</p>
                 </div>`;
                 
             if (dynamicPassCardBlock) {
@@ -182,8 +234,8 @@ window.transmitRSVPToSpreadsheet = function(event) {
             }
         } else {
             portalFeedbackDisplayElement.innerHTML = `
-                <div style="background: rgba(255,255,255,0.02); padding: 2rem; border: 1px solid var(--color-border); text-align: center; animation: fadeIn 0.5s ease;">
-                    <p style="font-size: 1.05rem; color: #ffffff;">نشكرك يا ${structuralGuestNameStr} على إبلاغنا باعتذارك الكريم. دامت دياركم مفعمة بالمسرات العائلية.</p>
+                <div style="background: rgba(118,141,164,0.02); padding: 2rem; border: 1px solid var(--color-border); text-align: center; animation: fadeIn 0.5s ease;">
+                    <p style="font-size: 1.05rem; color: var(--color-text-light);">نشكرك يا ${structuralGuestNameStr} على إبلاغنا باعتذارك الكريم. دامت دياركم مفعمة بالمسرات العائلية.</p>
                 </div>`;
             
             setTimeout(() => {
@@ -203,23 +255,7 @@ window.transmitRSVPToSpreadsheet = function(event) {
 };
 
 // ==========================================================================
-// 6. SCROLL DEPTH TRANSFORM TO REVEAL THE INTERACTIVE ENVELOPE CARD SHEET
-// ==========================================================================
-window.addEventListener('scroll', () => {
-    const globalTargetSection = document.querySelector('.section-envelope-reveal');
-    const activeEnvelopeContainerElement = document.getElementById('wedding-interactive-envelope');
-    if (!globalTargetSection || !activeEnvelopeContainerElement) return;
-
-    const structuralBoundingTop = globalTargetSection.getBoundingClientRect().top;
-    if (structuralBoundingTop < window.innerHeight / 1.6) {
-        activeEnvelopeContainerElement.classList.add('is-open');
-    } else {
-        activeEnvelopeContainerElement.classList.remove('is-open');
-    }
-});
-
-// ==========================================================================
-// 7. TIME-KEEPING RUNTIME ENGINE MODULE (TARGET DATE: AUGUST 5, 2026)
+// 6. TIME-KEEPING RUNTIME ENGINE MODULE (TARGET DATE: AUGUST 5, 2026)
 // ==========================================================================
 const countdownTargetEpoch = new Date("Aug 5, 2026 19:30:00").getTime(); 
 
@@ -231,7 +267,7 @@ const activeClockTimerLoop = setInterval(() => {
         clearInterval(activeClockTimerLoop);
         const visualGridContainerElement = document.querySelector('.countdown-grid-metrics');
         if (visualGridContainerElement) {
-            visualGridContainerElement.innerHTML = "<h3 style='color:#ffffff; font-family: Amiri, serif; width:100%; text-align:center; font-size:1.8rem;'>بدأ الفرح والبهجة، بارك الله لهما وجمع بينهما في خير!</h3>";
+            visualGridContainerElement.innerHTML = "<h3 style='color:var(--color-gold-light); font-family: Amiri, serif; width:100%; text-align:center; font-size:1.8rem;'>بدأ الفرح والبهجة، بارك الله لهما وجمع بينهما في خير!</h3>";
         }
         return;
     }
@@ -251,5 +287,3 @@ const activeClockTimerLoop = setInterval(() => {
     if (displayTargetMinutesNode) displayTargetMinutesNode.innerText = parsedMinutesValue < 10 ? '0' + parsedMinutesValue : parsedMinutesValue;
     if (displayTargetSecondsNode) displayTargetSecondsNode.innerText = parsedSecondsValue < 10 ? '0' + parsedSecondsValue : parsedSecondsValue;
 }, 1000);
-
-
