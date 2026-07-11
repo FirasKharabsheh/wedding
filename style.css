@@ -1,56 +1,76 @@
 :root {
-    /* لوحة الألوان الملكية: أزرق الليل العميق، الفضة اللؤلؤية، والأبيض العاجي المضيء */
-    --color-silver: #c0c0c0;
-    --color-silver-light: #e0e0e0;
-    --color-bg-dark: #0a1128;       
-    --color-bg-deep: #000814;       
-    --color-bg-surface: #101f42;    
-    --color-text-light: #f4f6f9;    
-    --color-text-muted: rgba(244, 246, 249, 0.5);
-    --color-border: rgba(192, 192, 192, 0.25);
-    --shadow-deep: 0 30px 70px rgba(0, 8, 20, 0.5);
-    --shadow-glow: 0 0 30px rgba(224, 224, 224, 0.25);
-    --transition-smooth: all 1.2s cubic-bezier(0.25, 1, 0.3, 1);
+    /* لوحة تدرجات الحرير السماوي المعكوس واللؤلؤ والبلاتين */
+    --color-gold: #768da4;          
+    --color-gold-light: #2c4a6f;    
+    --color-bg-surface: rgba(255, 255, 255, 0.45); /* زجاج بلوري شفاف يتأثر بالخلفية التحتية */
+    --color-text-light: #1e293b;    
+    --color-text-muted: rgba(30, 41, 59, 0.6);
+    --color-border: rgba(44, 74, 111, 0.15);
+    --shadow-deep: 0 30px 70px rgba(44, 74, 111, 0.08);
+    --shadow-glow: 0 0 40px rgba(118, 141, 164, 0.4);
+    --transition-smooth: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* التوسيط الصارم ومنع التداخل */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Cairo', sans-serif; /* الخط الافتراضي الواضح */
+    font-family: 'Cairo', sans-serif;
+    text-align: center !important; /* فرض التوسيط المطلق */
     -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    background: linear-gradient(135deg, #0a1128, #101f42, #000814, #0a1128);
-    background-size: 400% 400%;
-    animation: gradientSilkMovement 20s ease infinite;
+    /* 👑 شقلبة الألوان: التدرج يبدأ الآن كحلياً ملكياً عميقاً في الأعلى (0%) وينساب تدريجياً ليصبح سماوياً لؤلؤياً مشرقاً في الأسفل (100%) */
+    background: linear-gradient(to bottom, #102142 0%, #d2e4f5 40%, #e2eef9 70%, #f0f6fc 100%);
     color: var(--color-text-light);
     overflow-x: hidden;
     position: relative;
     line-height: 1.7;
 }
 
-@keyframes gradientSilkMovement {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* محرك الشتاء المطور المغطى لكافة الأقسام */
+#luxurious-pearl-rain-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; 
+    z-index: 999; /* تهاطل الشتاء فوق كل الأقسام دون انقطاع */
 }
 
-/* عناوين الفخامة بالخط الملكي الجديد */
-h1, h2, h3, .portal-title, .footer-brand {
-    font-family: 'Reem Kufi', sans-serif !important;
-    font-weight: 600;
+/* تفعيل خط Aldhabi الفاخر في الأسماء والعناوين مع تباين ذكي */
+h1, .editorial-headline-hero, .portal-title, .letter-host, .footer-brand {
+    font-family: 'Aldhabi', 'Amiri', serif !important;
+    font-weight: normal !important;
+    font-size: 7.2rem !important; 
+    color: var(--color-gold-light);
+    line-height: 1.1 !important;
+    padding-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(44, 74, 111, 0.08);
+    margin: 0 auto !important;
 }
 
-/* --- زر التحكم بالموسيقى الفضي العائم --- */
+h2, h3, h4, .terms-title, .section-editorial-title {
+    font-family: 'Aldhabi', 'Amiri', serif !important;
+    font-weight: normal !important;
+    font-size: 4.5rem !important;
+    color: var(--color-gold-light);
+    line-height: 1.2 !important;
+    margin: 0 auto !important;
+}
+
+/* --- زر الموسيقى الفضي العائم --- */
 .audio-toggle-widget {
     position: fixed;
     bottom: 2rem;
     left: 2rem;
     z-index: 1000;
-    background: var(--color-bg-surface);
-    border: 1px solid var(--color-silver);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--color-border);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -59,161 +79,153 @@ h1, h2, h3, .portal-title, .footer-brand {
     align-items: center;
     cursor: pointer;
     box-shadow: var(--shadow-deep);
-    color: var(--color-silver-light);
+    color: var(--color-gold-light);
     font-size: 1.3rem;
     transition: var(--transition-smooth);
-    animation: buttonPulseGlow 3s infinite alternate;
-}
-.audio-toggle-widget:hover {
-    transform: scale(1.12) rotate(15deg);
 }
 
-@keyframes buttonPulseGlow {
-    0% { box-shadow: var(--shadow-deep); }
-    100% { box-shadow: var(--shadow-glow); }
-}
-
-/* --- ذرات الفضة واللؤلؤ العائمة --- */
-#particle-canvas-ambient {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    pointer-events: none; z-index: 1;
-}
-.ambient-dust-element {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0;
-    animation: driftingDust linear infinite;
-}
-@keyframes driftingDust {
-    0% { transform: translateY(-20px) translateX(0px) scale(0.8); opacity: 0; }
-    20% { opacity: 0.7; transform: translateY(20vh) translateX(15px) scale(1.1); }
-    50% { transform: translateY(50vh) translateX(-15px) scale(0.9); opacity: 0.5; }
-    80% { opacity: 0.7; transform: translateY(80vh) translateX(20px) scale(1.2); }
-    100% { transform: translateY(102vh) translateX(0px) scale(0.8); opacity: 0; }
-}
-
-/* --- الهيدر الرئيسي الواجهة الملكية --- */
+/* --- الواجهة العلوية الرئيسية (تعديل اللون لتبرز فوق الكحلي الداكن) --- */
 .hero-viewport-header {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 2rem;
     position: relative;
     z-index: 2;
-    background: radial-gradient(circle at center, rgba(16,31,66,0.3) 0%, var(--color-bg-dark) 100%);
+    /* Pushes content cleanly down the Z-index pipeline during active tracking */
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
-.hero-tagline { letter-spacing: 0.4em; font-size: 0.85rem; color: var(--color-silver-light); margin-bottom: 2rem; font-weight: 600; }
-.editorial-headline-hero { 
-    font-size: 5.5rem; 
-    color: #ffffff; 
-    letter-spacing: -1px; 
-    margin-bottom: 1.5rem;
-    text-shadow: 0 0 20px rgba(255,255,255,0.15);
+.editorial-headline-hero {
+    /* Creates a beautiful editorial layering depth shift upon touch movements */
+    transform: translateZ(50px) scale(1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.minimal-divider-line { width: 60px; height: 1px; background: var(--color-silver); margin: 2.5rem auto; }
-.hero-poetic-quote { font-family: 'Amiri', serif !important; font-size: 1.6rem; color: #ffffff; max-width: 700px; margin: 0 auto; line-height: 2.1; font-style: italic; }
+.hero-viewport-header .editorial-headline-hero {
+    color: #ffffff !important; /* تحويل اسم فراس ونيروز في الواجهة للأبيض الناصع ليشع بقوة فوق الكحلي العلوى */
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+}
+.hero-viewport-header .hero-tagline {
+    color: var(--color-gold-light) !important;
+    font-weight: 700;
+}
+.hero-viewport-header .hero-poetic-quote {
+    color: #f8fafc !important; /* تفتيح لون الآية القرآنية الكريمة فوق الكحلي الداكن */
+}
+.minimal-divider-line { width: 60px; height: 1px; background: var(--color-gold); margin: 2.5rem auto; }
 
-/* --- الظرف التفاعلي المطور ثلاثي الأبعاد --- */
+/* --- قسم البطاقة الملكية المؤطرة الشفافة --- */
 .section-envelope-reveal {
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 6rem 2rem;
-    background: var(--color-bg-deep);
-    perspective: 1500px;
+    padding: 10rem 2rem;
+    background: transparent;
     z-index: 2;
     position: relative;
 }
+/* ==========================================================================
+   CINEMATIC FRAME CARD COMPONENT (FROSTED GLASSMORPHISM DESIGN)
+   ========================================================================== */
 .interactive-card-envelope {
     position: relative;
-    width: 450px;
-    height: 300px;
-    background-color: var(--color-bg-surface);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-deep);
-    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-    transform-style: preserve-3d;
-}
-.envelope-flap-fold {
-    position: absolute;
-    top: 0; left: 0; width: 0; height: 0;
-    border-left: 225px solid transparent;
-    border-right: 225px solid transparent;
-    border-top: 160px solid #1c2d5a; 
-    transform-origin: top;
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 3;
-}
-.interactive-card-envelope.is-open .envelope-flap-fold { transform: rotateX(180deg); z-index: 1; }
-.internal-letter-sheet {
-    position: absolute;
-    top: 10px; left: 10px; width: 430px; height: 280px;
-    background: #ffffff; 
-    z-index: 2;
-    transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-    padding: 3rem 2rem;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border: 1px solid #e2e8f0;
-}
-.interactive-card-envelope.is-open .internal-letter-sheet { transform: translateY(-130px) translateZ(10px); z-index: 4; }
-.letter-badge { font-size: 0.75rem; letter-spacing: 0.2em; color: #101f42; font-weight: bold; }
-.letter-host { font-size: 1.6rem; margin-bottom: 1rem; color: #0a1128; }
-.letter-body-text { font-size: 0.95rem; color: #334155; line-height: 1.8; margin-bottom: 1rem; }
-.letter-footer-meta { border-top: 1px solid rgba(16,31,66,0.1); padding-top: 1rem; }
-.letter-date { font-size: 1.15rem; font-weight: 600; color: #0a1128; font-family: 'Playfair Display', serif !important; }
-.letter-time { font-size: 0.85rem; color: #64748b; margin-top: 0.25rem; }
-
-/* --- قسم شروط الطاولات المنظمة (الاعتذار عن الأطفال) --- */
-.section-terms-etiquette {
-    padding: 6rem 2rem;
-    background: var(--color-bg-dark);
-    display: flex;
-    justify-content: center;
-    z-index: 2;
-    position: relative;
-}
-.terms-card-wrapper {
-    max-width: 700px;
+    width: 100%;
+    max-width: 580px; 
     background: var(--color-bg-surface);
-    border: 1px dashed var(--color-border);
-    padding: 3.5rem 2.5rem;
-    text-align: center;
+    backdrop-filter: blur(25px) saturate(110%);
+    -webkit-backdrop-filter: blur(25px) saturate(110%);
+    border: 1px solid var(--color-border);
+    padding: 4.5rem 3.5rem;
     box-shadow: var(--shadow-deep);
-}
-.terms-icon { font-size: 2rem; color: var(--color-silver-light); margin-bottom: 1rem; }
-.terms-title { font-size: 1.8rem; color: #ffffff; margin-bottom: 1rem; }
-.terms-text { font-size: 1.05rem; color: rgba(255,255,255,0.8); line-height: 1.9; text-align: justify; text-justify: inter-word; }
-/* --- حركات الظرف المطور ثلاثي الأبعاد المتقدم --- */
-.interactive-card-envelope {
-    transform: rotateX(10deg) rotateY(-5deg);
-    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1.4s ease;
+    margin: 0 auto !important; 
+    animation: luxuryCardReveal 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.interactive-card-envelope:hover, .interactive-card-envelope.is-open {
-    transform: rotateX(0deg) rotateY(0deg) scale(1.02);
-    box-shadow: 0 40px 90px rgba(0, 8, 20, 0.6);
+@keyframes luxuryCardReveal {
+    0% { opacity: 0; transform: scale(0.96) translateY(20px); filter: blur(4px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
 }
 
-/* --- العداد التنازلي الفضي المضيء --- */
+/* الإطارات والنقوش الداخلية النحيفة */
+.interactive-card-envelope::before {
+    content: ''; position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    border: 1px solid rgba(44, 74, 111, 0.25); pointer-events: none;
+}
+.interactive-card-envelope::after {
+    content: ''; position: absolute;
+    top: 22px; left: 22px; right: 22px; bottom: 22px;
+    border: 1px dashed rgba(44, 74, 111, 0.12); pointer-events: none;
+}
+
+.internal-letter-sheet {
+    background: transparent;
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center !important;
+}
+
+.letter-badge { 
+    font-size: 1.15rem; 
+    font-family: 'Amiri', serif !important; 
+    color: var(--color-gold-light); 
+    font-weight: bold; 
+    margin: 0 auto 1.5rem auto !important; 
+    display: block;
+    letter-spacing: 2px;
+    text-align: center !important;
+}
+
+.letter-body-text {
+    font-family: 'Amiri', serif !important; 
+    font-size: 1.25rem !important; 
+    color: var(--color-text-light);
+    line-height: 2 !important;
+    margin-bottom: 2rem !important;
+    font-weight: normal;
+    text-align: center !important;
+}
+
+.letter-footer-meta {
+    border-top: 1px solid rgba(44, 74, 111, 0.15);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    text-align: center !important;
+}
+
+.letter-date {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--color-gold-light);
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: center !important;
+}
+
+.letter-time {
+    font-size: 1.05rem;
+    color: var(--color-text-light);
+    font-weight: 600;
+    display: block;
+    text-align: center !important;
+}
+
+/* --- العداد التنازلي الحركي الموزون الشفاف --- */
 .section-countdown-timer { 
     padding: 10rem 2rem; 
     background: transparent; 
-    text-align: center; 
-    z-index: 2; 
     position: relative; 
+    z-index: 2; 
+    text-align: center !important;
 }
 
 .countdown-badge { 
-    font-size: 0.8rem; 
-    letter-spacing: 0.3em; 
-    color: var(--color-silver-light); 
+    font-size: 1.1rem; 
+    color: var(--color-gold-light); 
     margin-bottom: 1.5rem; 
-    font-weight: 600; 
+    font-weight: 700; 
 }
 
 .countdown-grid-metrics { 
@@ -226,7 +238,9 @@ h1, h2, h3, .portal-title, .footer-brand {
 }
 
 .countdown-metric-card { 
-    background: var(--color-bg-surface); 
+    background: var(--color-bg-surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-border); 
     padding: 3rem 2rem; 
     min-width: 160px; 
@@ -237,45 +251,23 @@ h1, h2, h3, .portal-title, .footer-brand {
     overflow: hidden;
 }
 
-.countdown-metric-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; width: 100%; height: 3px;
-    background: linear-gradient(to right, transparent, var(--color-silver-light), transparent);
-    transform: scaleX(0);
-    transition: transform 0.8s ease;
-}
-
-.countdown-metric-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-glow);
-}
-
-.countdown-metric-card:hover::after {
-    transform: scaleX(1);
-}
-
 .countdown-metric-card span { 
-    font-family: 'Playfair Display', serif !important; 
-    font-size: 4rem; 
-    font-weight: 300; 
-    color: #ffffff; 
+    font-family: 'Cairo', sans-serif !important; 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    color: var(--color-gold-light); 
     line-height: 1; 
     display: block; 
     margin-bottom: 0.75rem; 
-    letter-spacing: -1px; 
-    text-shadow: 0 0 15px rgba(255,255,255,0.2);
 }
 
 .countdown-metric-card label { 
-    font-size: 0.8rem; 
-    text-transform: uppercase; 
-    letter-spacing: 0.2em; 
-    color: var(--color-text-muted); 
-    font-weight: 600; 
+    font-size: 0.95rem; 
+    color: var(--color-text-light); 
+    font-weight: 700;
 }
 
-/* --- بوابة الحضور الرقمية الفاخرة RSVP لكبار السن --- */
+/* --- بوابة الحضور الرقمية الفاخرة العاجية RSVP الشفافة --- */
 .section-rsvp { 
     padding: 10rem 2rem; 
     background: transparent; 
@@ -289,43 +281,31 @@ h1, h2, h3, .portal-title, .footer-brand {
 .rsvp-container-box { 
     width: 100%; 
     max-width: 650px; 
-    background: var(--color-bg-surface); 
+    background: var(--color-bg-surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-border); 
     padding: 5.5rem 4.5rem; 
     position: relative; 
     box-shadow: var(--shadow-deep); 
-    transition: var(--transition-smooth);
 }
 
 .rsvp-container-box::before { 
-    content: ''; 
-    position: absolute; 
+    content: ''; position: absolute; 
     top: 15px; left: 15px; right: 15px; bottom: 15px; 
-    border: 1px solid rgba(255, 255, 255, 0.08); 
-    pointer-events: none; 
+    border: 1px solid rgba(44, 74, 111, 0.15); pointer-events: none; 
 }
 
 .rsvp-instructions { 
-    color: #f4f6f9; 
+    color: var(--color-text-light); 
     font-size: 1.15rem; 
-    text-align: center; 
     margin-bottom: 3.5rem; 
     line-height: 1.9; 
-}
-
-.form-group-field { 
-    position: relative; 
-    margin-bottom: 3.5rem; 
-}
-
-.form-field-label { 
-    font-size: 1rem; 
-    color: #ffffff; 
-    display: block; 
-    margin-bottom: 1.2rem; 
-    text-align: right; 
     font-weight: 600;
 }
+
+.form-group-field { position: relative; margin-bottom: 3.5rem; }
+.form-field-label { font-size: 1.05rem; color: var(--color-text-light); display: block; margin-bottom: 1.2rem; font-weight: 700; text-align: center !important; }
 
 .form-input-control, .form-select-control { 
     width: 100%; 
@@ -334,159 +314,168 @@ h1, h2, h3, .portal-title, .footer-brand {
     border-bottom: 2px solid var(--color-border); 
     padding: 1.2rem 0; 
     font-size: 1.35rem; 
-    color: #ffffff; 
+    color: var(--color-text-light); 
     outline: none; 
-    transition: var(--transition-smooth); 
-    text-align: center; 
-    font-weight: 600;
-}
-
-.form-input-control::placeholder {
-    color: rgba(255, 255, 255, 0.25);
-}
-
-.form-input-control:focus, .form-select-control:focus { 
-    border-color: #ffffff; 
-    background: rgba(255, 255, 255, 0.03);
+    text-align: center !important;
+    font-weight: 700;
 }
 
 .polite-notice-banner { 
     font-size: 1.1rem; 
-    color: #ffffff; 
+    color: var(--color-text-light); 
     line-height: 1.9; 
-    background: rgba(255, 255, 255, 0.03); 
-    border-right: 4px solid var(--color-silver); 
+    background: rgba(44, 74, 111, 0.04); 
+    border-right: 4px solid var(--color-gold); 
     padding: 1.8rem; 
     margin-bottom: 3.5rem; 
-    text-align: right; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(44, 74, 111, 0.02);
+    font-weight: 600;
+    text-align: justify;
 }
 
 .btn-premium-action { 
     width: 100%; 
-    background: #ffffff; 
-    border: 1px solid #ffffff; 
-    color: var(--color-bg-dark); 
+    background: var(--color-gold-light); 
+    border: 1px solid var(--color-gold-light); 
+    color: #ffffff; 
     padding: 1.5rem 2.5rem; 
     font-size: 1.25rem; 
     cursor: pointer; 
-    transition: var(--transition-smooth); 
     font-weight: 700; 
-    box-shadow: 0 15px 40px rgba(255,255,255,0.1);
+    box-shadow: var(--shadow-deep);
+    text-align: center !important;
 }
 
-.btn-premium-action:hover { 
-    background: transparent;
-    color: #ffffff;
-    border-color: #ffffff;
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-2px);
-}
-
-.style-icon { margin-left: 10px; }
-
-#rsvp-portal-status-feedback { 
-    text-align: center; 
-    margin-top: 2rem; 
-    font-weight: 600; 
-    font-size: 1.15rem; 
-    padding: 1.2rem; 
-    background: rgba(255, 255, 255, 0.04); 
-    border: 1px solid var(--color-border); 
-}
-
-/* --- الفكرة 2: تصميم بطاقة الدخول الرقمية التلقائية الحركية الفاخرة --- */
+/* --- تصميم قسيمة الدخول الرقمية التلقائية الشفافة الزجاجية --- */
 #digital-entry-pass-card {
     margin-top: 4rem;
-    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-    color: #0f172a;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    color: var(--color-text-light);
     border-radius: 12px;
     padding: 2.5rem 2rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    border: 2px solid var(--color-silver-light);
-    animation: PassReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(44, 74, 111, 0.1);
+    border: 2px solid #cbdbeb;
+    position: relative; overflow: hidden;
 }
+.pass-card-header { font-size: 1.4rem; font-weight: 700; color: var(--color-text-light); border-bottom: 2px dashed #cbdbeb; padding-bottom: 1rem; margin-bottom: 1.5rem; text-align: center !important; }
+.pass-card-body h4 { font-size: 1.45rem; color: var(--color-text-light); margin-bottom: 1.5rem; text-align: center !important; }
+.pass-meta-row { display: flex; justify-content: space-between; gap: 1rem; background: #ffffff; padding: 1.2rem; border-radius: 8px; border: 1px solid #cbdbeb; margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600; }
+.pass-footer-notice { font-size: 0.95rem; color: #ef4444; font-weight: 700; line-height: 1.5; text-align: center !important; }
 
-#digital-entry-pass-card::before {
-    content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(16,31,66,0.03) 0%, transparent 80%);
-    pointer-events: none;
-}
-
-@keyframes PassReveal {
-    from { opacity: 0; transform: scale(0.9) translateY(30px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.pass-card-header {
-    text-align: center; font-family: 'Reem Kufi', sans-serif !important; font-size: 1.4rem; font-weight: 700;
-    color: #101f42; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px dashed #cbd5e1; padding-bottom: 1rem; margin-bottom: 1.5rem;
-}
-
-.pass-card-body h4 { font-family: 'Reem Kufi', sans-serif !important; font-size: 1.45rem; color: #0f172a; text-align: center; margin-bottom: 1.5rem; }
-.pass-meta-row { display: flex; justify-content: space-between; gap: 1rem; background: #f8fafc; padding: 1.2rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 1.5rem; font-size: 1rem; }
-.pass-meta-row span { color: #64748b; font-weight: 600; }
-.pass-meta-row strong { color: #101f42; font-size: 1.2rem; }
-.pass-footer-notice { text-align: center; font-size: 0.85rem; color: #ef4444; font-weight: 600; line-height: 1.5; }
-
-/* --- خريطة موقع فندق ماريوت وأزرار الملاحة السريعة --- */
+/* --- أزرار التوجيه الملاحية في النصف السفلي الساطع من التدرج المعكوس --- */
 .section-location-map { 
     padding: 10rem 2rem; 
     background: transparent; 
-    text-align: center; 
-    z-index: 2; 
     position: relative; 
+    z-index: 2; 
+    text-align: center !important; 
 }
-
-.map-badge { 
-    font-size: 0.8rem; 
-    letter-spacing: 0.3em; 
-    color: var(--color-silver-light); 
-    margin-bottom: 1.5rem; 
-    font-weight: 600; 
+.section-location-map .section-editorial-title, .section-location-map .map-description {
+    color: var(--color-text-light) !important; /* لون داكن يتناسب مع الخلفية السماوية الفاتحة بأسفل الموقع */
 }
+.map-badge { font-size: 1.1rem; color: var(--color-gold-light); margin-bottom: 1.5rem; font-weight: 700; }
 
-/* الفكرة 4: أزرار الملاحة الفورية المضيئة وسهلة النقر وعالية التباين */
-.navigation-fast-links {
-    display: flex; justify-content: center; gap: 1.5rem; max-width: 600px; margin: 0 auto 3rem auto; flex-wrap: wrap;
-}
+.navigation-fast-links { display: flex; justify-content: center; gap: 1.5rem; max-width: 600px; margin: 0 auto 3rem auto; flex-wrap: wrap; }
+.nav-btn-link { flex: 1; min-width: 240px; padding: 1.3rem 2rem; border-radius: 8px; font-size: 1.15rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 25px rgba(44, 74, 111, 0.06); }
+.nav-btn-link.maps-google { background-color: var(--color-gold-light); color: #ffffff; }
+.nav-btn-link.maps-waze { background-color: #33f0ff; color: #000000; }
 
-.nav-btn-link {
-    flex: 1; min-width: 240px; padding: 1.2rem 2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 700;
-    text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: var(--transition-smooth);
-}
+.map-viewport-frame { max-width: 950px; margin: 0 auto; border: 1px solid var(--color-border); padding: 1.2rem; background: var(--color-bg-surface); backdrop-filter: blur(20px); box-shadow: var(--shadow-deep); }
+.map-viewport-frame iframe { width: 100%; height: 500px; border: 0; filter: contrast(1) saturate(0.9); }
 
-.nav-btn-link.maps-google { background-color: #ffffff; color: #101f42; border: 1px solid #ffffff; }
-.nav-btn-link.maps-waze { background-color: #33f0ff; color: #000000; border: 1px solid #33f0ff; }
-.nav-btn-link:hover { transform: translateY(-4px); box-shadow: var(--shadow-glow); }
+/* --- الفوتر المتداخل مع عمق اللؤلؤي السماوي المشرق --- */
+.footer-editorial { padding: 8rem 2rem; background: transparent; border-top: 1px solid var(--color-border); z-index: 2; position: relative; text-align: center !important; }
+.footer-editorial .footer-brand { color: var(--color-gold-light) !important; }
+.footer-copyright { font-size: 0.95rem; color: var(--color-text-muted) !important; margin-top: 0.5rem; text-align: center !important; }
 
-.map-viewport-frame { 
-    max-width: 950px; margin: 0 auto; border: 1px solid var(--color-border); padding: 1.2rem; background: var(--color-bg-surface); box-shadow: var(--shadow-deep); transition: var(--transition-smooth);
-}
-
-.map-viewport-frame iframe { 
-    width: 100%; height: 500px; border: 0; filter: invert(0.92) rotate(180deg) hue-rotate(180deg) grayscale(0.2) contrast(1.1); 
-}
-
-/* --- الفوتر --- */
-.footer-editorial { padding: 8rem 2rem; background: var(--color-bg-deep); text-align: center; border-top: 1px solid var(--color-border); z-index: 2; position: relative; }
-
-/* --- استعلامات الشاشات للموبايل --- */
+/* ==========================================================================
+   CROSS-BROWSER MOBILE COMPATIBILITY BREAKPOINTS (المعالجة الشاملة للموبايل)
+   ========================================================================== */
 @media (max-width: 768px) {
-    .editorial-headline-hero { font-size: 3.6rem; }
-    .hero-poetic-quote { font-size: 1.3rem; line-height: 2; }
-    .interactive-card-envelope { width: 100%; height: 260px; }
-    .envelope-flap-fold { border-left-width: 46vw; border-right-width: 46vw; border-top-width: 110px; }
-    .internal-letter-sheet { width: calc(100% - 20px); height: 240px; padding: 2.2rem 1.2rem; }
-    .interactive-card-envelope.is-open .internal-letter-sheet { transform: translateY(-90px) translateZ(10px); }
-    .countdown-metric-card span { font-size: 2.8rem; }
-    .countdown-metric-card { min-width: calc(50% - 1rem); padding: 2rem 1rem; }
-    .rsvp-container-box { padding: 4rem 2rem; }
-    .form-input-control, .form-select-control { font-size: 1.15rem; }
-    .map-viewport-frame iframe { height: 350px; }
-    .navigation-fast-links { gap: 1rem; }
-    .nav-btn-link { min-width: 100%; }
+    /* 1. Universal calligraphic header corrections to prevent side text-clipping */
+    h1, .editorial-headline-hero, .portal-title, .letter-host { 
+        font-size: 4.2rem !important; /* Calibrated sizing ensures the names sit cleanly on a single line */
+        text-align: center !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+    
+    h2, h3, h4, .terms-title, .section-editorial-title { 
+        font-size: 2.8rem !important; 
+        text-align: center !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+    
+    .hero-poetic-quote { 
+        font-size: 1.25rem !important; 
+        line-height: 2 !important; 
+        text-align: center !important;
+    }
+    
+    /* 2. Fluid Adaptive Constraints for the Cinematic Frosted Glassmorphism Card Frame */
+    .section-envelope-reveal { 
+        padding: 6rem 1.25rem; 
+    }
+    
+    .interactive-card-envelope { 
+        width: 100% !important; 
+        padding: 3.5rem 1.5rem !important; /* Opens internal breathing room for Arabic typography */
+        margin: 0 auto !important; 
+    }
+    
+    .letter-body-text { 
+        font-size: 1.05rem !important; 
+        line-height: 1.9 !important; 
+        text-align: center !important;
+    }
+    
+    .letter-date { 
+        font-size: 1.25rem !important; 
+        text-shadow: none !important; 
+        text-align: center !important;
+    }
+    
+    .letter-time {
+        text-align: center !important;
+    }
+
+    /* 3. Balanced Grid Matrix Alignments for the Live Clock Countdown */
+    .countdown-metric-card span { 
+        font-size: 2.6rem !important; 
+    }
+    
+    .countdown-metric-card { 
+        min-width: calc(50% - 1rem); 
+        padding: 2rem 1rem; 
+    }
+    
+    /* 4. Center-Aligned Input Fields inside the Secure RSVP Box Layout */
+    .rsvp-container-box { 
+        padding: 4rem 1.5rem; 
+    }
+    
+    .form-input-control, .form-select-control { 
+        font-size: 1.15rem !important; 
+        text-align: center !important; 
+    }
+    
+    .form-field-label {
+        text-align: center !important;
+    }
+    
+    /* 5. Navigation Link Buttons and Embedded Map Blocks */
+    .map-viewport-frame iframe { 
+        height: 320px; 
+    }
+    
+    .navigation-fast-links { 
+        gap: 1rem; 
+    }
+    
+    .nav-btn-link { 
+        min-width: 100%; 
+        text-align: center !important; 
+    }
 }
