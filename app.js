@@ -5,53 +5,48 @@ window.globalRegistryDatabase = {}; // Memory cache initialized empty
 
 // 👑 Paste your official unique deployed Google Web App macro execution link target directly here
 const googleDatabaseEndpointUrl = "https://script.google.com/macros/s/AKfycbw1P_zT7xP5Rie-iHnJtcECf67jIzx4iiWugo1MmF-HUE-lrBPY1TTrQBwJolYTdygmuw/exec";
-
-// Dynamically pull verified records array straight from your Google Spreadsheet cells on window initialization
-// منظومة الانتقال التلقائي الفوري لقسم الدعوة عند فتح الصفحة
+// جلب رموز وأسماء المدعوين ديناميكياً من جدول جوجل فور تحميل الصفحة
 window.addEventListener('DOMContentLoaded', () => {
-    console.log("🌐 تم تحميل الهيكل.. بدء الانتقال التلقائي الفاخر...");
+    console.log("🌐 جاري الاتصال الآمن بجدول بيانات جوجل ومزامنة قائمة المدعوين...");
     
-    // تشغيل الموسيقى تلقائياً إن سمحت سياسة المتصفح
-    if (audioPlayerInstance) {
-        audioPlayerInstance.play().catch(() => {
-            console.log("المتصفح يطلب تفاعلاً أولياً لتشغيل الصوت، سيتم تشغيله عند أول حركة للضيف.");
-        });
-        if (audioWidgetIconElement) audioWidgetIconElement.className = "fa-solid fa-volume-high";
-    }
-
-    // الانتظار لمدة ثانية واحدة ليعيش الضيف هيبة الواجهة الرئيسية ثم الانتقال تلقائياً
-    setTimeout(() => {
-        const envelopeSection = document.querySelector('.section-envelope-reveal');
-        if (envelopeSection) {
-            envelopeSection.scrollIntoView({ 
-                behavior: 'smooth', // حركة تمرير حريرية ناعمة جداً
-                block: 'center'     // وضع قسم الظرف في منتصف شاشة الموبايل تماماً
-            });
-            console.log("✅ تم التمرير الآلي بنجاح لقسم الظرف.");
-        }
-    }, 1500); // 1500 تعني ثانية ونصف، يمكنك تقليلها لثانية واحدة (1000) إن أردت سرعة أكبر
+    fetch(googleDatabaseEndpointUrl)
+    .then(response => response.json())
+    .then(data => {
+        window.globalRegistryDatabase = data;
+        console.log("✅ تم تحميل قاعدة بيانات الضيوف بنجاح ومزامنتها حياً:", window.globalRegistryDatabase);
+    })
+    .catch(error => {
+        console.error("❌ خطأ حرج أثناء جلب البيانات الديناميكية من السيرفر:", error);
+    });
 });
 
 // ==========================================================================
 // 2. CORE PORTAL OVERLAY & CINEMATIC AUDIO CONFIGURATIONS
 // ==========================================================================
-const portalOverlayElement = document.getElementById('cinematic-portal-overlay');
 const audioPlayerInstance = document.getElementById('ambient-audio-player');
 const audioWidgetIconElement = document.getElementById('audio-widget-icon');
 
-window.initiateCinematicExperience = function() {
-    if (portalOverlayElement) {
-        portalOverlayElement.classList.add('curtains-open');
-    }
+// منظومة الانتقال التلقائي الفوري لقسم الدعوة عند فتح الصفحة (تمرير انسيابي بدون نقر)
+window.addEventListener('load', () => {
+    // محاولة تشغيل الموسيقى الخلفية تلقائياً بناءً على حماية المتصفح
     if (audioPlayerInstance) {
         audioPlayerInstance.play().catch(() => {
-            console.log("Ambient context user authorization deferred by local browser policy.");
+            console.log("المتصفح يطلب تفاعلاً أولياً لتشغيل الصوت، سيتم تفعيله عند أول حركة للضيف.");
         });
-        if (audioWidgetIconElement) {
-            audioWidgetIconElement.className = "fa-solid fa-volume-high";
-        }
+        if (audioWidgetIconElement) audioWidgetIconElement.className = "fa-solid fa-volume-high";
     }
-};
+
+    // انتشال المتصفح وتمريره آلياً ونزولاً لقسم كرت الظرف لتأمل الفخامة
+    setTimeout(() => {
+        const envelopeSection = document.querySelector('.section-envelope-reveal');
+        if (envelopeSection) {
+            envelopeSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center'     
+            });
+        }
+    }, 1500);
+});
 
 window.toggleAmbientPlayback = function() {
     if (!audioPlayerInstance) return;
@@ -82,6 +77,7 @@ if (structuralParticleContainer) {
         structuralParticleContainer.appendChild(node);
     }
 }
+
 // ==========================================================================
 // 4. PASSWORD ACCESS VALIDATION & CONDITIONAL FIELD MANAGEMENT
 // ==========================================================================
@@ -96,7 +92,6 @@ window.executePasscodeVerification = function() {
     const proceduralDropdownTarget = document.getElementById('guest-allocated-companions');
     const noticeBannerTarget = document.getElementById('polite-seats-reminder');
 
-    // Reference the dynamic window matrix memory layout block safely
     if (window.globalRegistryDatabase && window.globalRegistryDatabase[structuralPasscodeKey]) {
         const structuralGuestProfile = window.globalRegistryDatabase[structuralPasscodeKey];
         
@@ -132,7 +127,6 @@ window.toggleSeatSelectionVisibility = function() {
         containerWrapperElement.style.display = (attendanceStatusElement.value === 'yes') ? 'block' : 'none';
     }
 };
-
 // ==========================================================================
 // 5. ASYNCHRONOUS IN-APP DATABASE REDIRECTION INTERACTION ENGINE
 // ==========================================================================
@@ -143,6 +137,7 @@ window.transmitRSVPToSpreadsheet = function(event) {
     const selectedStatusValue = document.getElementById('guest-attendance-status').value;
     const portalFeedbackDisplayElement = document.getElementById('rsvp-portal-status-feedback');
     const actionSubmitButtonNode = document.getElementById('rsvp-submit-action-btn');
+    const dynamicPassCardBlock = document.getElementById('digital-entry-pass-card');
     
     if (!window.globalRegistryDatabase || !window.globalRegistryDatabase[passcodeRefKey] || !portalFeedbackDisplayElement || !actionSubmitButtonNode) return;
 
@@ -162,7 +157,7 @@ window.transmitRSVPToSpreadsheet = function(event) {
 
     fetch(googleDatabaseEndpointUrl, {
         method: "POST",
-        mode: "no-cors",
+        mode: "no-cors", 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(rsvpSubmissionPayload)
     })
@@ -170,28 +165,34 @@ window.transmitRSVPToSpreadsheet = function(event) {
         actionSubmitButtonNode.disabled = false;
         actionSubmitButtonNode.innerText = "تأكيد الحجز الفوري الآن";
         
+        document.getElementById('rsvp-dynamic-submission-form').style.display = 'none';
+        
         if (selectedStatusValue === 'yes') {
             portalFeedbackDisplayElement.innerHTML = `
-                <div style="background: rgba(255,255,255,0.04); padding: 2rem; border: 1px solid var(--color-border); text-align: center; animation: fadeIn 0.5s ease;">
+                <div style="background: rgba(255,255,255,0.04); padding: 2rem; border: 1px solid var(--color-border); text-align: center; animation: fadeIn 0.5s ease; margin-bottom: 2rem;">
                     <i class="fa-solid fa-circle-check" style="color: #ffffff; font-size: 2.5rem; margin-bottom: 1rem; display: block;"></i>
                     <h3 style="font-family: 'Amiri', serif; margin-bottom: 0.5rem; color: #ffffff;">تم تأكيد حجزكم بنجاح</h3>
-                    <p style="font-size: 1.05rem; color: #ffffff;">شرفتمونا يا ${structuralGuestNameStr}. تم تثبيت عدد (${finalSeatCountChosen}) مقاعد لسيادتكم في فندق ماريوت عمّان وننتظركم بكل ابتهاج.</p>
+                    <p style="font-size: 1.05rem; color: #ffffff;">شرفتمونا يا عائلتنا الكريمة. تم تثبيت الحجز بنجاح في فندق ماريوت عمّان وننتظركم بكل ابتهاج.</p>
                 </div>`;
+                
+            if (dynamicPassCardBlock) {
+                document.getElementById('pass-guest-name').innerText = structuralGuestNameStr;
+                document.getElementById('pass-guest-seats').innerText = `${finalSeatCountChosen} مقاعد مخصصة`;
+                dynamicPassCardBlock.style.display = 'block';
+            }
         } else {
             portalFeedbackDisplayElement.innerHTML = `
                 <div style="background: rgba(255,255,255,0.02); padding: 2rem; border: 1px solid var(--color-border); text-align: center; animation: fadeIn 0.5s ease;">
-                    <p style="font-size: 1.05rem; color: #ffffff;">نشكرك يا ${structuralGuestNameStr} على إبلاغنا باعتذارك الكريم. دامت دياركم مفعمة بالمسرات.</p>
+                    <p style="font-size: 1.05rem; color: #ffffff;">نشكرك يا ${structuralGuestNameStr} على إبلاغنا باعتذارك الكريم. دامت دياركم مفعمة بالمسرات العائلية.</p>
                 </div>`;
+            
+            setTimeout(() => {
+                const nestedAuthStageRef = document.getElementById('rsvp-auth-verification-stage');
+                if (nestedAuthStageRef) nestedAuthStageRef.style.display = 'block';
+                if (portalFeedbackDisplayElement) portalFeedbackDisplayElement.innerHTML = '';
+                document.getElementById('guest-passcode-input').value = '';
+            }, 6000);
         }
-        
-        document.getElementById('rsvp-dynamic-submission-form').reset();
-        setTimeout(() => {
-            const nestedDataDetailsRef = document.getElementById('rsvp-dynamic-submission-form');
-            const nestedAuthStageRef = document.getElementById('rsvp-auth-verification-stage');
-            if (nestedDataDetailsRef) nestedDataDetailsRef.style.display = 'none';
-            if (nestedAuthStageRef) nestedAuthStageRef.style.display = 'block';
-            if (portalFeedbackDisplayElement) portalFeedbackDisplayElement.innerHTML = '';
-        }, 6000);
     })
     .catch((error) => {
         console.error("Spreadsheet storage connectivity failure node:", error);
@@ -218,10 +219,10 @@ window.addEventListener('scroll', () => {
 });
 
 // ==========================================================================
-// 7. TIME-KEEPING RUNTIME ENGINE MODULE (TARGET DATE: Aug 05, 2026)
+// 7. TIME-KEEPING RUNTIME ENGINE MODULE (TARGET DATE: AUGUST 5, 2026)
 // ==========================================================================
+const countdownTargetEpoch = new Date("Aug 5, 2026 19:30:00").getTime(); 
 
-const countdownTargetEpoch = new Date("Aug 5, 2026 19:30:00").getTime();
 const activeClockTimerLoop = setInterval(() => {
     const currentInstantEpoch = new Date().getTime();
     const calculatedChronologicalDelta = countdownTargetEpoch - currentInstantEpoch;
@@ -248,4 +249,7 @@ const activeClockTimerLoop = setInterval(() => {
     if (displayTargetDaysNode) displayTargetDaysNode.innerText = parsedDaysValue < 10 ? '0' + parsedDaysValue : parsedDaysValue;
     if (displayTargetHoursNode) displayTargetHoursNode.innerText = parsedHoursValue < 10 ? '0' + parsedHoursValue : parsedHoursValue;
     if (displayTargetMinutesNode) displayTargetMinutesNode.innerText = parsedMinutesValue < 10 ? '0' + parsedMinutesValue : parsedMinutesValue;
-if (displayTargetSecondsNode) displayTargetSecondsNode.innerText = parsedSecondsValue < 10 ? '0' + parsedSecondsValue : parsedSecondsValue;}, 1000);
+    if (displayTargetSecondsNode) displayTargetSecondsNode.innerText = parsedSecondsValue < 10 ? '0' + parsedSecondsValue : parsedSecondsValue;
+}, 1000);
+
+
