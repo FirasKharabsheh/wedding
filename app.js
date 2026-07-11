@@ -7,18 +7,29 @@ window.globalRegistryDatabase = {}; // Memory cache initialized empty
 const googleDatabaseEndpointUrl = "https://script.google.com/macros/s/AKfycbw1P_zT7xP5Rie-iHnJtcECf67jIzx4iiWugo1MmF-HUE-lrBPY1TTrQBwJolYTdygmuw/exec";
 
 // Dynamically pull verified records array straight from your Google Spreadsheet cells on window initialization
+// منظومة الانتقال التلقائي الفوري لقسم الدعوة عند فتح الصفحة
 window.addEventListener('DOMContentLoaded', () => {
-    console.log("🌐 Initializing dynamic database connection framework sync stream...");
+    console.log("🌐 تم تحميل الهيكل.. بدء الانتقال التلقائي الفاخر...");
     
-    fetch(googleDatabaseEndpointUrl)
-    .then(response => response.json())
-    .then(data => {
-        window.globalRegistryDatabase = data;
-        console.log("✅ Live database configuration registry matrix cached successfully:", window.globalRegistryDatabase);
-    })
-    .catch(error => {
-        console.error("❌ Critical runtime exception fetching sheet database array:", error);
-    });
+    // تشغيل الموسيقى تلقائياً إن سمحت سياسة المتصفح
+    if (audioPlayerInstance) {
+        audioPlayerInstance.play().catch(() => {
+            console.log("المتصفح يطلب تفاعلاً أولياً لتشغيل الصوت، سيتم تشغيله عند أول حركة للضيف.");
+        });
+        if (audioWidgetIconElement) audioWidgetIconElement.className = "fa-solid fa-volume-high";
+    }
+
+    // الانتظار لمدة ثانية واحدة ليعيش الضيف هيبة الواجهة الرئيسية ثم الانتقال تلقائياً
+    setTimeout(() => {
+        const envelopeSection = document.querySelector('.section-envelope-reveal');
+        if (envelopeSection) {
+            envelopeSection.scrollIntoView({ 
+                behavior: 'smooth', // حركة تمرير حريرية ناعمة جداً
+                block: 'center'     // وضع قسم الظرف في منتصف شاشة الموبايل تماماً
+            });
+            console.log("✅ تم التمرير الآلي بنجاح لقسم الظرف.");
+        }
+    }, 1500); // 1500 تعني ثانية ونصف، يمكنك تقليلها لثانية واحدة (1000) إن أردت سرعة أكبر
 });
 
 // ==========================================================================
@@ -46,14 +57,10 @@ window.toggleAmbientPlayback = function() {
     if (!audioPlayerInstance) return;
     if (audioPlayerInstance.paused) {
         audioPlayerInstance.play();
-        if (audioWidgetIconElement) {
-            audioWidgetIconElement.className = "fa-solid fa-volume-high";
-        }
+        if (audioWidgetIconElement) audioWidgetIconElement.className = "fa-solid fa-volume-high";
     } else {
         audioPlayerInstance.pause();
-        if (audioWidgetIconElement) {
-            audioWidgetIconElement.className = "fa-solid fa-volume-xmark";
-        }
+        if (audioWidgetIconElement) audioWidgetIconElement.className = "fa-solid fa-volume-xmark";
     }
 };
 
