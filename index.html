@@ -14,7 +14,16 @@
     <!-- <link rel="stylesheet" href="fonts/AmiriQuran-Regular.ttf"> -->
 
 <style>
-  /* إجبار المتصفح على تطبيق خط الظبي الراقي على النصوص والأسماء */
+  /* 1. Tell the browser where to find and download the Aldhabi font file */
+  @font-face {
+    font-family: 'Aldhabi';
+    /* Using a relative path so GitHub Pages can locate it safely */
+    src: url('fonts/AmiriQuran-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  /* 2. Force the browser to apply the loaded font */
   body, html, h1, h2, h3, p, div, button, select, input, .script, .hero .names, .envelope-caption .names { 
     font-family: 'Aldhabi', 'Times New Roman', serif !important; 
   }
@@ -24,7 +33,6 @@
     /* font-size: 1.3em !important;
     font-style: normal !important; */
   }
-</style>
 <style>
   :root{
     --ivory:#f6f1e6;
